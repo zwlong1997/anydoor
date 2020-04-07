@@ -1,15 +1,14 @@
 const gulp = require('gulp');
 const less = require('gulp-less');
-const plumber = require('gulp-plumber');
 
-gulp.task('less',() => {
+gulp.task('less',(done)=>{
     gulp.src('src/**/*.less')
-    .pipe(plumber())
-    .pipe(less())
-    .pipe(gulp.dest('build'));
+        .pipe(less())
+        .pipe(gulp.dest('build'));
+    done();
 })
 
-gulp.task('default',gulp.series(['less'],(done) => {
-    console.log(done);
+gulp.task('default',gulp.series('less',(done)=>{
+    console.log('done!');
     done();
 }));
